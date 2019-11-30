@@ -1,7 +1,7 @@
 % script for running the brute force algorithm
 
 %% parameters: 
-m = 4;
+m = 3;
 n = 3;
 sigma = 0.00797885;
 shuffled_ratio = 100;
