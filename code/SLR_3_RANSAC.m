@@ -7,8 +7,6 @@ function [x_hat] = SLR_3_RANSAC(A, y)
     minm = inf;
     ychooseperm = sort(randperm(m, n));
     ybar = y(ychooseperm, :);
-    xiSet = zeros(n, (m - n + 1) * nchoosek(m, n) * factorial(n));
-    cnt = 1;
 
     for index = 1:icnt
         nodrAperm = perms(odrAperm(index, :));
@@ -17,23 +15,15 @@ function [x_hat] = SLR_3_RANSAC(A, y)
         for jndex = 1:jcnt
             Ai = A(nodrAperm(jndex, :), :);
             x = Ai \ ybar;
-            xiSet(:, cnt) = x;
-            cnt = cnt + 1;
-        end
+            Pi_idx = SLR_1_Pi_given_x(A, y, x);
+            error = norm(y - A(Pi_idx, :) * x);
 
-    end
+            if error < minm
+                minm = error;
+                Ansx = x;
+                AnsPi = Pi_idx;
+            end
 
-    icnt = size(xiSet, 2);
-
-    for index = 1:icnt
-        xi = xiSet(:, index);
-        Pi_idx = SLR_1_Pi_given_x(A, y, xi);
-        error = norm(y - A(Pi_idx, :) * xi);
-
-        if error < minm
-            minm = error;
-            Ansx = xi;
-            AnsPi = Pi_idx;
         end
 
     end

@@ -1,6 +1,6 @@
 %% parameters: 
 m = 13;
-n = 3;
+n = 4;
 sigma = 0;
 shuffled_ratio = 100;
 %% generate data:
