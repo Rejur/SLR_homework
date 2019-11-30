@@ -24,7 +24,7 @@ for index = 1:cnt
     end
 end
 Pi = P(flag, :);
-disp(Pi);
+% disp(Pi);
 x_hat = Ansx;
 end
 

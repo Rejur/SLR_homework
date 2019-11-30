@@ -1,9 +1,10 @@
 % script for running the brute force algorithm
 
 %% parameters:
-m = 3;
+m = 6;
 n = 3;
-sigma = 0.00797885;
+%sigma = 0.00797885;
+sigma = 0.0157;
 shuffled_ratio = 100;
 %% generate data:
 [A, y, x] = SLR_1_gen_data(m, n, sigma, shuffled_ratio);

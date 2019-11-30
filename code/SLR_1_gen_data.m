@@ -11,8 +11,8 @@ end
 A = rand([m n]);
 x = rand([n 1]);
 Ax = A * x;
-disp(A);
-disp(Ax);
+% disp(A);
+% disp(Ax);
 % disp((1 : shuffledNum))
 while true
     rndPerm = randperm(shuffledNum);
@@ -22,7 +22,7 @@ while true
 end
 % disp(rndPerm)
 Ax(1:shuffledNum) = Ax(rndPerm);
-disp(Ax);
+% disp(Ax);
 y = Ax + normrnd(0, sigma^2, [m, 1]);
 end
 
