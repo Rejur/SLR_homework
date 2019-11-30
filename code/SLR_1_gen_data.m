@@ -1,7 +1,12 @@
 function [A, y, x] = SLR_1_gen_data(m, n, sigma, shuffled_ratio)
 % y = Pi*A*x + sigma*noise
 shuffledNum = round(shuffled_ratio * m / 100);
-shuffledNum = min(m, shuffledNum);
+if shuffledNum < 1
+    shuffledNum = 0;
+else
+    shuffledNum = min(m, max(2, shuffledNum));
+end
+
 % disp(shuffledNum)
 A = rand([m n]);
 x = rand([n 1]);
