@@ -44,11 +44,11 @@ Return:
 minerror = inf
 bestFit = null
 XSet = null
-for ybar in subvector in Rn of y {
-	for Ai in all n*n matrixes formed by the rows of A {
-		xi = Ai's inverse matrix * yi
-		add xi point into XSet
-	}
+ybar = random subvector in Rn of y
+
+for Ai in all n*n matrixes formed by the rows of A {
+  xi = Ai's inverse matrix * yi
+  add xi point into XSet
 }
 
 for xi in XSet {
@@ -62,3 +62,16 @@ for xi in XSet {
 return bestFit
 ```
 
+Algorithm has $m! / (m - n)!$ times iterations, and each iterations, compute inverse matrix is $O(n^3)$, other matrix operation is $O(n^2)$ can be ignored, because $m > n$, so PiA is $O(m*n)$, I don't ignore it.
+
+The complex is $O((m!) / (m - n)! * (n^3 + n*m))$. Moreover $m > n$, I write complex is $O(n*m!*(n^2+m)/(m-n)!)$. 
+
+$m=\{20,40,60,80,100,120,140,160,180,200\}$ 
+
+$n=\{6,5,4,4,4,3,3,3,3,3\}$
+
+
+
+<img src="/Users/hulin/Library/Application Support/typora-user-images/image-20191130223557501.png" alt="image-20191130223557501" style="zoom:50%;" />
+
+According the answer, RANSAC produces larger errors,  According the exercise 2.2, I know errors is influenced by $\zeta$. when the algorithm is Brute force, x's answer is influenced by more $\zeta$'s parameters. Although their exception are same, but bacause sample's number, so RANSAC's variance will be bigger.

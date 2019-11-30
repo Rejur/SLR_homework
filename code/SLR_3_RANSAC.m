@@ -5,8 +5,9 @@ function [x_hat] = SLR_3_RANSAC(A, y)
     odrAperm = nchoosek((1:m), n);
     icnt = size(odrAperm, 1);
     minm = inf;
-    ychooseperm = sort(randperm(m, n));
-    ybar = y(ychooseperm, :);
+    ychooseperm = randperm(m - n + 1, 1);
+    % disp(ychooseperm);
+    ybar = y(ychooseperm:ychooseperm + n - 1, :);
 
     for index = 1:icnt
         nodrAperm = perms(odrAperm(index, :));
