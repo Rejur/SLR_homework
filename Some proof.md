@@ -18,3 +18,12 @@ End
 ```
 
 so the complexity is $O(mlogm)$.
+
+##### Exercise 2.1:
+
+It easy to knows $y=Ax^*$ by least-squares, so can get minimum by $x^*$.
+
+the error is equal $||(A^TA)^{-1}A\zeta||/||x||$, Generally, when n = 1 and m = 1, then the question is to know $|(A^{-1}\zeta)|/|x| \le 1/100$, $E(\zeta)=\delta \sqrt{2/\pi}$,$E(A)=E(x)=\sqrt{2/\pi}$, so we can know $\delta \le \sqrt{2/\pi}/100$, the error's exception is less than $1\%$.
+
+##### Exercise 2.2:
+
