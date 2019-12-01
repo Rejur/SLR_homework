@@ -84,11 +84,7 @@ According the answer, RANSAC produces larger errors,  According the exercise 2.2
 
 (2)
 $$
-\Pi_{k+1}=\mathop{argmin}_{\Pi \in P}||y-\Pi A\mathbf{x}_k||_2 \quad(1) \\
-\mathbf{x}_{k+1}=\mathop{argmin}_{\mathbf{x}\in \R^n}||y-\Pi_{k+1}A\mathbf{x}||_2 \quad(2)\\
-k+1\quad object \quad function:||y-\Pi_{k+1}A\mathbf{x}_{k+1}||_2 \quad(3)\\
-k\quad object \quad function:||y-\Pi_{k}A\mathbf{x}_{k}||_2 \quad(3)\\
-(2) \le||y-\Pi_{k+1}A\mathbf{x}_k||_2\le(3)
+\Pi_{k+1}=\mathop{argmin}_{\Pi \in P}||y-\Pi A\mathbf{x}_k||_2 \quad(1) \\\mathbf{x}_{k+1}=\mathop{argmin}_{\mathbf{x}\in \R^n}||y-\Pi_{k+1}A\mathbf{x}||_2 \quad(2)\\k+1\quad object \quad function:||y-\Pi_{k+1}A\mathbf{x}_{k+1}||_2 \quad(3)\\k\quad object \quad function:||y-\Pi_{k}A\mathbf{x}_{k}||_2 \quad(3)\\(2) \le||y-\Pi_{k+1}A\mathbf{x}_k||_2\le(3)
 $$
 so object function decreases in each iteration.
 
@@ -101,3 +97,37 @@ The algorithm's each iteration is to get the minimum $\mathbf{x}_{k+1}$, so when
 The algorithms's error about stuffled_ratio:
 
 <img src="/Users/hulin/Desktop/SLR_homework/shuffled_ratio_test.jpg" alt="shuffled_ratio_test" style="zoom:67%;" />
+
+##### Exercise 5.1
+
+(1) My *brute force* solution is select all the x rows (x from n to m) of A, assuming that these rows match, then solve x, add the solution set, compare all L0-norm values, and choose the minimum value as the answer. 
+
+Origin x can the minimum from $||y-Ax||_0$, $[x^T,-1]^T$ is belong to $N([X',-1])$, X' is fromed by inlier data.  because X is random, so can't find other point belong in inlier data's range base. Moreover inlier data is more than 50%, so other $x^*$'s answer is smaller than origin x.
+
+So the algorithm is make sense.
+
+(2)
+
+Refer to code cvxGetAnswer.m. the solution isn't sensitive to the choice of $\lambda$. And when sigma is zero, error of the method which is noiseless is always little. By change sigma to a large value, The noisy methd's error is about as same as little sigma. By 100 averages,  So I can think the I'mplementation is right.(the photo's value should be divided by 100)
+
+![image-20191201185321166](/Users/hulin/Library/Application Support/typora-user-images/image-20191201185321166.png)
+
+(3)
+
+Because treat mismatches as outliers and the rest as inliers, and $y-Ax=e$, so (5.3)'s part 2 is equl to (5.2), and the part 1 is to be estimate origin $e$'s value.
+
+(4)
+
+When m and n is too large, the algorithm run long time. and if $m >> n$, the application appear some bug. but when m = 1000 and n = 200. the algorithm is correct. so I guess It correct, when m = 10000.
+
+(5)
+
+<img src="/Users/hulin/Desktop/SLR_homework/compareAlgorithm.jpg" alt="compareAlgorithm" style="zoom:67%;" />
+
+##### Exercise 6.1
+
+(1)
+
+$p_2(Ax)=4 (21 x^2 + 47 x y + 27 y^2)$
+
+$p_3(Ax)=2(248 x^3 + 843 x^2 y + 966 x y^2 + 372 y^3)$

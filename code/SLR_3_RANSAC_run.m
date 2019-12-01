@@ -1,7 +1,7 @@
 %% parameters: 
-m = 20;
+m = 8;
 n = 6;
-sigma = 0;
+sigma = 0.01;
 shuffled_ratio = 100;
 %% generate data:
 [A, y, x] = SLR_1_gen_data(m, n, sigma, shuffled_ratio);
