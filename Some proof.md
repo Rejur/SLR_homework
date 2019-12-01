@@ -130,4 +130,14 @@ When m and n is too large, the algorithm run long time. and if $m >> n$, the app
 
 $p_2(Ax)=4 (21 x^2 + 47 x y + 27 y^2)$
 
-$p_3(Ax)=2(248 x^3 + 843 x^2 y + 966 x y^2 + 372 y^3)$
+$p_3(Ax)=496 x^3 + 1686 x^2 y + 1932 x y^2 + 744 y^3$
+
+(3)
+
+when $m=100$, about 0.1 seconds. <img src="/Users/hulin/Library/Application Support/typora-user-images/image-20191202001336295.png" alt="image-20191202001336295" style="zoom:50%;" />
+
+when m = 10000, about 2.3 seconds.<img src="/Users/hulin/Library/Application Support/typora-user-images/image-20191202001453249.png" alt="image-20191202001453249" style="zoom:50%;" />
+
+when m = 50000, about 11 seconds. <img src="/Users/hulin/Library/Application Support/typora-user-images/image-20191202001650404.png" alt="image-20191202001650404" style="zoom:50%;" />
+
+emmm, I'm just curiosity about why the difference between n2's setup_elimination_templete function and n5's.

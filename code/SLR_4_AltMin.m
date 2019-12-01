@@ -8,6 +8,7 @@ ans = [];
 error = norm(y - A * x0);
 ans = [ans, error];
 x1 = x0;
+if num_iter == 0
 while true
     % disp(x0);
     Pi = SLR_1_Pi_given_x(A, y, x0);
@@ -20,6 +21,15 @@ while true
     end
     x1 = x0;
     % disp(error);
+end
+else
+    for i = 1 : num_iter
+        Pi = SLR_1_Pi_given_x(A, y, x0);
+        Aperm = A(Pi, :);
+        x0 = ((transpose(Aperm) * Aperm) \ transpose(Aperm)) * y;
+        error = norm(y - Aperm * x0);
+        ans = [ans, error];
+    end
 end
 % disp(ans);
 plot((1:size(ans, 2)), ans);
