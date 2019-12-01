@@ -78,4 +78,26 @@ According the answer, RANSAC produces larger errors,  According the exercise 2.2
 
 ##### Exercise 4.1
 
+(1)
+
+<img src="/Users/hulin/Desktop/SLR_homework/Exercise(1).jpg" alt="Exercise(1)" style="zoom:67%;" />
+
+(2)
+$$
+\Pi_{k+1}=\mathop{argmin}_{\Pi \in P}||y-\Pi A\mathbf{x}_k||_2 \quad(1) \\
+\mathbf{x}_{k+1}=\mathop{argmin}_{\mathbf{x}\in \R^n}||y-\Pi_{k+1}A\mathbf{x}||_2 \quad(2)\\
+k+1\quad object \quad function:||y-\Pi_{k+1}A\mathbf{x}_{k+1}||_2 \quad(3)\\
+k\quad object \quad function:||y-\Pi_{k}A\mathbf{x}_{k}||_2 \quad(3)\\
+(2) \le||y-\Pi_{k+1}A\mathbf{x}_k||_2\le(3)
+$$
+so object function decreases in each iteration.
+
+(3)
+
+The algorithm's each iteration is to get the minimum $\mathbf{x}_{k+1}$, so when $\mathbf{x}_{k+1}\approx\mathbf{x}_k$, I think the algorithm should be terminate. so the condition is  $||x_k-x_{k+1}||/||x_{k+1}|| < 1e^{-16}$, I use the error, because the numerical error about double is about $2e^-16$.
+
+(4)
+
+The algorithms's error about stuffled_ratio:
+
 <img src="/Users/hulin/Desktop/SLR_homework/shuffled_ratio_test.jpg" alt="shuffled_ratio_test" style="zoom:67%;" />
