@@ -27,7 +27,7 @@ the error is equal $||(A^TA)^{-1}A\zeta||/||x||$, Generally, when n = 1 and m = 
 
 ##### Exercise 2.2:
 
-Complexity, I don't know matlab's full permutation algorithm. But I know use next_permutation(A C++ function) can get all permutations in $O(m^2)$. and get x_hat's complex is $O(m*n^2+n^3+n^2*m)$, so the complex is $O(m!*(m*n^2+n^3+n^2*m))$. Generally speaking, the computer counts 1e8 times in one second, and 1e11 times in one hour. So when $n^2m!(m+n) < 1e11$, the algorithm will to be effcient. And the algorithm is equal to Exercise 2.1, so $\delta \le \sqrt{2/\pi}/100$ can get small error(I try use code to count when sigma = 0.0161, the error is less than $1\%%$). And the algorithm can toperate 100% shuffled data.
+Complexity, I don't know matlab's full permutation algorithm. But I know use next_permutation(A C++ function) can get all permutations in $O(m^2)$. and get x_hat's complex is $O(m*n^2+n^3+n^2*m)$, so the complex is $O(m!*(m*n^2+n^3+n^2*m))$. Generally speaking, the computer counts 1e8 times in one second, and 1e11 times in one hour. So when $n^2m!(m+n) < 1e11$, the algorithm will to be effcient. And the algorithm is equal to Exercise 2.1, so $\delta \le \sqrt{2/\pi}/100$ can get small error(I try use code to count when sigma = 0.0049, the error is less than $1\%%$). And the algorithm can toperate 100% shuffled data.
 
 
 
@@ -75,3 +75,7 @@ $n=\{6,5,4,4,4,3,3,3,3,3\}$
 <img src="/Users/hulin/Library/Application Support/typora-user-images/image-20191130223557501.png" alt="image-20191130223557501" style="zoom:50%;" />
 
 According the answer, RANSAC produces larger errors,  According the exercise 2.2, I know errors is influenced by $\zeta$. when the algorithm is Brute force, x's answer is influenced by more $\zeta$'s parameters. Although their exception are same, but bacause sample's number, so RANSAC's variance will be bigger.
+
+##### Exercise 4.1
+
+<img src="/Users/hulin/Desktop/SLR_homework/shuffled_ratio_test.jpg" alt="shuffled_ratio_test" style="zoom:67%;" />
