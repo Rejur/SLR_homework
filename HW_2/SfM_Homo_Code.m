@@ -1,5 +1,5 @@
-load('SfM_Homo_Data.mat');
-
+ load('SfM_Homo_Data.mat');
+% load('My_data_400_inliers.mat');
 % A set of L=250 correspondences are given, i.e., x1(:, i) <-> x2(:, i) for
 % i = 1, ..., L. Points are represented in homogeneous coordinates. As a
 % ground-truth information, the first 100 coorespondences are inliers while
@@ -13,15 +13,33 @@ load('SfM_Homo_Data.mat');
 % correspondences. Remember that in homography matrix estimation, each
 % correspondence gives 3 embeddings. Therefore, X_tilde is expected to have
 % size 9*3L.
+iL = 250;
+x1 = x1(:,1:iL);
+x2 = x2(:,1:iL);
+
 X_tilde = homographic_embeddings(x1, x2);
 
+p1 = null(X_tilde','r');
+display(p1);
 % Normalize the embeddings to have the unit norm.
 X_tilde = normc(X_tilde);
 
 % YOUR CODE: Learn a subspace from X_tilde, using your modification of
 % DPCP-IRLS as described in problem 3. 
-[h, num_iter, time] = DPCP_IRLS_modified(X_tilde);
-
+delta = 10^(-9);
+T = 1000;
+epsilon_J = 10^(-6);
+[distance, h, num_iter, time] = DPCP_IRLS_modified(X_tilde, delta, T, epsilon_J);
+cnt = 0;
+len = size(X_tilde, 2);
+display(distance);
+for index = 1:len
+    if distance(:,index) < 10^(-6)
+        cnt = cnt + 1;
+    end
+end
+display(cnt);
+   
 % Visualize the subspace distance for each embedding to Span(h)^\perp
 figure; stem(abs(normc(h)'*X_tilde));
 
