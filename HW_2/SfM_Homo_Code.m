@@ -13,14 +13,14 @@
 % correspondences. Remember that in homography matrix estimation, each
 % correspondence gives 3 embeddings. Therefore, X_tilde is expected to have
 % size 9*3L.
-iL = 250;
-x1 = x1(:,1:iL);
-x2 = x2(:,1:iL);
+% iL = 250;
+% x1 = x1(:,1:iL);
+% x2 = x2(:,1:iL);
 
 X_tilde = homographic_embeddings(x1, x2);
 
 p1 = null(X_tilde','r');
-display(p1);
+% display(p1);
 % Normalize the embeddings to have the unit norm.
 X_tilde = normc(X_tilde);
 
@@ -30,9 +30,10 @@ delta = 10^(-9);
 T = 1000;
 epsilon_J = 10^(-6);
 [distance, h, num_iter, time] = DPCP_IRLS_modified(X_tilde, delta, T, epsilon_J);
+
 cnt = 0;
 len = size(X_tilde, 2);
-display(distance);
+% display(distance);
 for index = 1:len
     if distance(:,index) < 10^(-6)
         cnt = cnt + 1;
@@ -41,8 +42,14 @@ end
 display(cnt);
    
 % Visualize the subspace distance for each embedding to Span(h)^\perp
-figure; stem(abs(normc(h)'*X_tilde));
-
+figure; subplot(1,2,1); stem(abs(normc(h)'*X_tilde));
+title('subspace distance for each embedding to Span(h)^\perp');
+subplot(1,2,2);
+data = [cnt, len - cnt];
+b = bar(data);
+ch = get(b,'children');
+set(gca,'XTickLabel',{'inlier','outlier'});
+title('Number of the inliers and outliers');
 % For debugging purpose, you may also want to learn a subspace using the
 % original DPCP-IRLS algorithm, and perform the same visualization. What do
 % you find?

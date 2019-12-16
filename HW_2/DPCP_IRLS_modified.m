@@ -1,22 +1,8 @@
 function [distances, f, resIter, time] = DPCP_IRLS_modified(X_tilde, delta, T, epsilon_J)
     tic;
-    % solves min_B ||X^T B||_1 s.t. B^T B=I
-    % INPUT
-    % X_tilde  : DxN data matrix of N data points of dimension D
-    % c        : Dimension of the orthogonal complement of the subspace.
-    %            To fit a hyperplane use c=1.
-    % delta    : Avoids division by zero. Typically is set to 10^(-9).
-    % T        : Maximal number of iterations. Typically set to 100.
-    % epsilon_J: Convergence accuracy: Typically set to 10^(-6).
-    % OUTPUT
-    % distances: Distance of each point to the estimated subspace.
-    % B        : Dxc matrix containing in its columns an orthonormal basis for
-    %            the orthogonal complement of the subspace.
-
-    % COPYRIGHT @ Manolis C. Tsakiris, 2016
 
     [D, N] = size(X_tilde);
-    display([D,N]);
+    % display([D,N]);
     Delta_J = Inf;
     k = 0;
     w = ones(N, 1);
